@@ -1,8 +1,9 @@
 import React from 'react'
-import Game from '../components/Game'
-import CrewMembers from '../components/CrewMembers'
-import Stats from '../components/Stats'
-import Input from '../components/Input'
+import Game from '../components/Game.js'
+import CrewMembers from '../components/CrewMembers.js'
+import Stats from '../components/Stats.js'
+import Input from '../components/Input.js'
+import CrewChat from '../components/CrewChat.js'
 
 const Display = ({state, dispatch}) => {
   return (
@@ -11,7 +12,10 @@ const Display = ({state, dispatch}) => {
         <div className='bottom-half'>
           <div>
             <CrewMembers/>
-            <Stats/>
+            <div className='bottom-left-quarter'>
+              <Stats/>
+              <CrewChat />
+            </div>
           </div>
           <Input state={state} dispatch={dispatch}/>
         </div>
