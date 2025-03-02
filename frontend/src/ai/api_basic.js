@@ -87,6 +87,10 @@ async function Space_Navigation_Seat_Dalle3() {
 
 
 
+async function randomPersonTalks() {
+    
+}
+
 // Game Events
 // Event/Popup Generator w/ Respective Image Generators
 

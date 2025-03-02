@@ -77,6 +77,16 @@ const reducer = (state, action) => {
                 ...state,
                 eventChoices: action.payload,
               };
+        case ACTIONS.SET_API_KEY:
+            return {
+                ...state,
+                APIKey: action.payload
+            }
+        case ACTIONS.SET_MODEL:
+            return {
+                ...state,
+                model: action.payload
+            }
         default: 
             return state;
     }
