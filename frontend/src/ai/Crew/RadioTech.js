@@ -9,9 +9,13 @@ const radio_tech_dialouge_format = z.object({
     kernel_adjusted: z.number(),
     distance_adjusted: z.number(),
   });
+
+
 // Radio Tech - Done
-async function Radio_Tech(state, notice=null, warning=null, planet_scenario=null) {
-    const radio_tech_dialogue = await openai.beta.chat.completions.parse({
+async function Radio_Tech(state, random, notice=null, warning=null, planet_scenario=null) {
+   
+   if(!random) {
+    const radio_tech_dialogue = await OpenAI.beta.chat.completions.parse({
         model: api_model,
         messages: [
             { role: "system", content: `You are a radio tech character on a futuristic corn spaceship. 
@@ -25,6 +29,24 @@ async function Radio_Tech(state, notice=null, warning=null, planet_scenario=null
         
         const radio_tech = radio_tech_dialogue.choices[0].message.parsed;
         console.log(radio_tech)
+        return radio_tech;
+    } else {
+        const radio_tech_dialogue = await openai.beta.chat.completions.parse({
+            model: api_model,
+            messages: [
+                { role: "system", content: `You are a radio tech character on a futuristic corn spaceship. 
+                    Your job is to report when you are approaching, docking, and leaving a planet environment in the game. Right now you are in your duty but you do not have anything important to talk about. Instead, you should talk about something personal or random.
+                    Guidelines: Structure all speech outputs to be concise 2 sentences long`},
+                { role: "user", content: "Based on game events, contribute to the plotline."},
+            ],
+            response_format: zodResponseFormat(radio_tech_dialouge_format, "Radio_Tech"),
+            });
+            
+            const radio_tech = radio_tech_dialogue.choices[0].message.parsed;
+            console.log(radio_tech)
+            return radio_tech;
+    }
 }
 
 
+export default Radio_Tech;
