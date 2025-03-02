@@ -39,7 +39,7 @@ const Game = ({state, dispatch}) => {
         this.asteroidLimit = 5;
 
         this.randomDialogueTimer = 0;
-        this.randomDialogueInterval = 30000;
+        this.randomDialogueInterval = Math.floor(Math.random() * (70000 - 50000) + 50000);
       }
 
 
