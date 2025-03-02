@@ -46,6 +46,7 @@ const LandingPage = ({dispatch}) => {
                         dispatch({type: ACTIONS.SET_API_KEY, payload: key});
                         setIsValid(true);
                         console.log(openai);
+
                     } else {
                         setIsValid(false);
                     }
