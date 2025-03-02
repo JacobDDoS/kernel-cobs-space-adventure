@@ -5,7 +5,7 @@ import Navigator from "./Crew/Navigator";
 import Radio_Tech from "./Crew/RadioTech";
 
 function randomDialogue(state) {
-    let selectedCrew = Math.floor(Math.random() * 5);
+    let selectedCrew = Math.floor(Math.random() * (5));
 
     switch(selectedCrew) {
         case 1:
