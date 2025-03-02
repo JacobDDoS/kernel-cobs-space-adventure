@@ -15,8 +15,8 @@ const chef_dialouge_format = z.object({
 async function Chef(state, random, notice=null, warning=null, planet_scenario=null) {
 
     if(!random) {
-    const chef_dialogue = await OpenAI.beta.chat.completions.parse({
-        model: api_model,
+    const chef_dialogue = await state.openai.beta.chat.completions.parse({
+        model: state.model,
         messages: [
             { role: "system", content: `You are a chef character on a futuristic corn spaceship. 
             Your job is to collect food and water from the game planet environment. Based on ${notice}, ${warning}, and ${planet_scenario}, generate dialouge to further the story. Based on dialouge, add or subtract the food and water inventory, attributes food_adjusted, water_adjusted, respectively and distance traveled during dialgoue or event that happens during dialouge (attribute distance_adjusted which can range from (-100,100) ). 

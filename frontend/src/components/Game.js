@@ -4,9 +4,10 @@ import { InputHandler } from './playerInput.js';
 import { Background } from './background.js';
 import { Asteroid } from './asteroids.js';
 import '../css/game.css';
+import randomDialogue from '../ai/randomDialogue.js';
 
 
-const Game = () => {
+const Game = ({state, dispatch}) => {
   useEffect(() => {
     const canvas = document.getElementById('canvas1');
     const ctx = canvas.getContext('2d');
@@ -36,6 +37,9 @@ const Game = () => {
 
         //asteroid limit, can be adjusted for asteroid field, etc
         this.asteroidLimit = 5;
+
+        this.randomDialogueTimer = 0;
+        this.randomDialogueInterval = 30000;
       }
 
 
@@ -57,6 +61,13 @@ const Game = () => {
           asteroid.update();
           if (asteroid.markedForDeletion) this.asteroids.splice(this.asteroids.indexOf(asteroid), 1);
         })
+
+        if (this.randomDialogueTimer > this.randomDialogueInterval) {
+          randomDialogue(state, dispatch);
+          this.randomDialogueTimer = 0;
+        } else {
+          this.randomDialogueTimer += deltaTime
+        }
 
       }
 

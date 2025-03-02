@@ -15,8 +15,8 @@ const radio_tech_dialouge_format = z.object({
 async function Radio_Tech(state, random, notice=null, warning=null, planet_scenario=null) {
    
    if(!random) {
-    const radio_tech_dialogue = await OpenAI.beta.chat.completions.parse({
-        model: api_model,
+    const radio_tech_dialogue = await state.openai.beta.chat.completions.parse({
+        model: state.model,
         messages: [
             { role: "system", content: `You are a radio tech character on a futuristic corn spaceship. 
                 Your job is to report when you are approaching, docking, and leaving a planet environment in the game. Based on ${notice}, ${warning}, and ${planet_scenario}, generate dialouge to further the story. 

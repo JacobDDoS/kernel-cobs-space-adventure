@@ -8,7 +8,7 @@ import CrewChat from '../components/CrewChat.js'
 const Display = ({state, dispatch}) => {
   return (
     <>
-        <Game />
+        <Game state={state} dispatch={dispatch}/>
         <div className='bottom-half'>
           <div>
             <CrewMembers/>
