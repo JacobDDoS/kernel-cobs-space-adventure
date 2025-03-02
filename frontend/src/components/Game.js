@@ -13,14 +13,14 @@ const Game = () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight / 2;
 
-
     //game screen
     class Game {
       constructor(width, height) {
         this.width = width;
         this.height = height;
         this.sideMargin = 70; //offset from left
-        this.velocityX = 1; //general game speed, adds modifier to most classes
+        this.bottomMargin = 70;
+        this.velocityX = 0; //general game speed, adds modifier to most classes
         this.velocityY = 0;
 
         this.background = new Background(this);//space image
@@ -31,7 +31,7 @@ const Game = () => {
         //asteroids
         this.asteroids = [];
         //how often asteroids come
-        this.asteroidInterval = 1000;
+        this.asteroidInterval = 2000;
         this.asteroidTimer = 0;
 
         //asteroid limit, can be adjusted for asteroid field, etc
@@ -87,9 +87,6 @@ const Game = () => {
 
 
     //resizing.
-    //i don't know if this works like we want it to
-    //
-    //
     const handleResize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight / 2;
@@ -105,8 +102,6 @@ const Game = () => {
 
 
   }, []);
-
-
 
   return (
     <canvas id="canvas1"></canvas>

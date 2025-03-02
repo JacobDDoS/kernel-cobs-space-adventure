@@ -5,8 +5,8 @@ export class Player {
         this.game = game;
 
         //size of ship
-        this.width = 75;
-        this.height = 35;
+        this.width = 65;
+        this.height = 25;
 
         this.angle = 0;
 
@@ -20,8 +20,8 @@ export class Player {
 
 
         //this.speedX = 0;
-        this.speedY = 0;
-        this.maxSpeed = 5;
+        //this.speedY = 0;
+        //this.maxSpeed = 5;
     }
 
     //deltatime is here if we want to implement spritesheet/smoother animation later
@@ -38,14 +38,13 @@ export class Player {
         }
 
 
-
         this.checkCollision();
 
-        /*if (input.includes('ArrowUp')) this.speedY = -this.maxSpeed;
+       /* if (input.includes('ArrowUp')) this.speedY = -this.maxSpeed;
         else if (input.includes('ArrowDown')) this.speedY = this.maxSpeed;
-        else this.speedY = 0;*/
+        else this.speedY = 0;
 
-        //this.y += this.speedY;
+        this.y += this.speedY;*/
 
         //space bar listen
 
@@ -70,7 +69,7 @@ export class Player {
             this.game.velocityX = 0;
             this.x = 0;
         } 
-        if (this.x > this.game.width - this.width) this.x = this.game.width - this.width;
+        if (this.x > (this.game.width / 1.9)- this.width) this.x = (this.game.width/1.9) - this.width;
 
         //this.x += this.speedX;
 
