@@ -369,3 +369,24 @@ html, body, #root {
   cursor: pointer;
   text-align: right;
 }
+
+/* Progress Bar */
+.progBarContainer {
+  position: absolute;
+  background-color: transparent;
+  top: 0;
+  width: 100%;
+}
+
+.progBarContainer hr {
+  margin-top: 10px;
+  border-top: 1px dashed #51de6b;
+  border-bottom: none;
+}
+
+.progBarContainer img {
+  position:inherit;
+  height:10px;
+  width: auto;
+  margin-top: -13px;
+}
