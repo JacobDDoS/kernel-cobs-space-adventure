@@ -42,6 +42,7 @@ const LandingPage = ({dispatch}) => {
                         apiKey: key, // API Key Initialization
                       }); 
                         dispatch({type: ACTIONS.SET_API_KEY, payload: openai});
+                        setIsValid(true);
                     } else {
                         setIsValid(false);
                     }
