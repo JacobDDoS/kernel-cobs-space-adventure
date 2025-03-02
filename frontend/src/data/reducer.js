@@ -8,8 +8,6 @@ const reducer = (state, action) => {
                 distance: state.distance + action.payload,
               };
         case ACTIONS.DECREASE_DISTANCE:
-            console.log(state.distance);
-            console.log("payload: " + action.payload);
             return {
                 ...state,
                 distance: state.distance - action.payload,
@@ -79,6 +77,11 @@ const reducer = (state, action) => {
                 ...state,
                 eventChoices: action.payload,
               };
+        case ACTIONS.SET_EVENT_CONSEQUENCES:
+            return {
+                ...state,
+                eventConsequences: action.payload
+            }
         case ACTIONS.SET_API_KEY:
             return {
                 ...state,

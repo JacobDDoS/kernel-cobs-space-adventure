@@ -6,14 +6,14 @@ import Input from '../components/Input.js'
 import CrewChat from '../components/CrewChat.js'
 import ProgressBar from '../components/ProgressBar.js'
 
-const Display = ({state, dispatch}) => {
+const Display = ({state, dispatch, setHasPopup}) => {
   const [chatLog, setChatLog] = useState([])
 
   return (
     <>
         <div className="top-half">
           <ProgressBar distance={state.distance}/>
-          <Game state={state} dispatch={dispatch} setChatLog={setChatLog}/>
+          <Game state={state} dispatch={dispatch} setChatLog={setChatLog} setHasPopup={setHasPopup}/>
         </div>
         <div className='bottom-half'>
           <div>

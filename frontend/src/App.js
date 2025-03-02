@@ -10,14 +10,14 @@ import LandingPage from './pages/LandingPage';
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [isStarting, setIsStarting] = useState(true);
-  const [hasPopup, setHasPopup] = useState(true);
+  const [hasPopup, setHasPopup] = useState(false);
 
   if (state.APIKey !== "") {
     return (
       <>
         {isStarting ? <StartPopup setIsStarting={setIsStarting}/> : null}
         {(hasPopup && !isStarting) ? <EventPopup state={state} setHasPopup={setHasPopup}/> : null}
-        <GameDisplay state={state} dispatch={dispatch} />
+        <GameDisplay state={state} dispatch={dispatch} setHasPopup={setHasPopup}/>
       </>
     );
   } else {

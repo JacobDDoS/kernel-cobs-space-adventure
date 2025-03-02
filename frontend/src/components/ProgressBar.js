@@ -5,7 +5,6 @@ const MaxShipProgress = 1000
 
 const ProgressBar = (distance) => {
     
-    console.log(distance.distance)
     return (
         <div className="progBarContainer">
             <hr />

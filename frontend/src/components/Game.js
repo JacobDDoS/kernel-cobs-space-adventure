@@ -6,9 +6,10 @@ import { Asteroid } from './asteroids.js';
 import '../css/game.css';
 import randomDialogue from '../ai/randomDialogue.js';
 import { ACTIONS } from '../data/actions.js';
+import { Generate_Warning_Message, Warning_Player_Options } from '../ai/Warning.js';
 
 
-const Game = ({state, dispatch, setChatLog}) => {
+const Game = ({state, dispatch, setChatLog, setHasPopup}) => {
   useEffect(() => {
     const canvas = document.getElementById('canvas1');
     const ctx = canvas.getContext('2d');
@@ -40,7 +41,9 @@ const Game = ({state, dispatch, setChatLog}) => {
         this.asteroidLimit = 5;
 
         this.randomDialogueTimer = 0;
-        this.randomDialogueInterval = Math.floor(Math.random() * (70000 - 50000) + 10000);
+        this.randomDialogueInterval = Math.floor(Math.random() * (70000 - 50000) + 50000);
+        this.randomEventInterval = Math.floor(Math.random()*100 + 200);
+        this.distanceTimer = 0;
       }
 
 
@@ -64,18 +67,50 @@ const Game = ({state, dispatch, setChatLog}) => {
         })
 
         if (this.randomDialogueTimer > this.randomDialogueInterval) {
-          randomDialogue(state, dispatch).then((output) => {
-            console.log(output);
-            setChatLog((log) => [...log, {name: output.role, text: output.speech}])
-          })
+          // randomDialogue(state, dispatch).then((output) => {
+          //   // console.log(output);
+          //   setChatLog((log) => [...log, {name: output.role, text: output.speech}])
+          // })
           this.randomDialogueTimer = 0;
         } else {
           this.randomDialogueTimer += deltaTime
         }
 
         let distance = deltaTime*this.velocityX/4000;
-        console.log("distacne: " + distance);
+        // console.log("distacne: " + distance);
         dispatch({type: ACTIONS.DECREASE_DISTANCE, payload: distance});
+        console.log("DECREASE DIST: " + distance)
+
+        if (this.randomEventInterval < this.distanceTimer) {
+          let randomChoice = Math.floor(Math.random()*5);
+          randomChoice = 1
+          switch (randomChoice) {
+            case 0:
+              Generate_Warning_Message(state).then((output) => {
+                dispatch({type: ACTIONS.SET_EVENT_IS_BAD, payload: true})
+                Warning_Player_Options(state, output.desc).then((secondOutput) => {
+                  dispatch({type: ACTIONS.SET_HAS_EVENT, payload: true})
+                  dispatch({type: ACTIONS.SET_EVENT_DESCRIPTION, payload: output.desc})
+                  dispatch({type: ACTIONS.SET_EVENT_CHOICES, payload: [
+                    secondOutput.option1, secondOutput.option2, secondOutput.option3
+                  ]})
+                  dispatch({type: ACTIONS.SET_EVENT_CONSEQUENCES, payload: [
+                    secondOutput.option1_resources, secondOutput.option2_resources, secondOutput.option3_resources
+                  ]})
+                  setHasPopup(true);
+                })
+              })
+              break;
+            default:
+              break;
+          }
+          this.distanceTimer = 0;
+        } else {
+          if (distance < 50) {
+            this.distanceTimer += distance;
+          }
+        }
+        
 
       }
 

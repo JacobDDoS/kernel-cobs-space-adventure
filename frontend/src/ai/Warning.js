@@ -38,7 +38,7 @@ export async function Generate_Warning_Message(state, planet_scenario=null) {
         messages: [
             { role: "system", content: `You are a futuristic spaceship navigation software which informs the user of events that happen in the game. Format a warning message that says the following: 
             Your first output should be 'WARNING' with attribute header, your second output should be the name of the event that is about to happen with attribute event_name, your third output should be a 5 word description statement summary of the event with attribute desc_header, and you fourth output should be a consise 2 sentence description of the event with attribute desc, your fifth output would be a rating of the critical of the event ranging form 0-100 with 0 being not critical in player endangerment and 100 is putting the player on the spaceship in extestenial endangerment with attribute event_rating. 
-            Based on ${planet_scenario}, generate dialouge to further the story. Based on dialouge, add or subtract inventory for the following resource attributes: food_adjusted, water_adjusted, fuel_adjusted, kernel_adjusted, and distance traveled during dialgoue or event that happens during dialouge (attribute distance_adjusted which can range from (-100,100) ). 
+            Based on ${planet_scenario}, generate dialouge to further the story. 
             Guidelines: The more critical the event, the more attributes should be depleted and the more distance is traveled. Only generate events with a critical rating more than or equal to 50. If planet scenario=null, do not mention any planet names. If planet scenario does not equal null, make sure to use the planet name in dialouge if previously mentioned in gameplay`},
             { role: "user", content: "Initialize the next event in a futuristic spaceship game"},
         ],
@@ -76,7 +76,7 @@ export async function Warning_Player_Options(state, warning=null) {
             option2_resources: z.array(resources_adjusted),
             option3: z.string(), 
             option3_resources: z.array(resources_adjusted),
-        Guidelines: Do not have communicating with external entities of any kind as an option. Only keep options relating to the player on the ship as availiable choices. `},
+        Guidelines: Do not have communicating with external entities of any kind as an option. Only keep options relating to the player on the ship as availiable choices within 1 concise sentence. `},
         ],
         response_format:zodResponseFormat(options, "Options")
         });
