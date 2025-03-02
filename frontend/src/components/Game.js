@@ -5,6 +5,7 @@ import { Background } from './background.js';
 import { Asteroid } from './asteroids.js';
 import '../css/game.css';
 import randomDialogue from '../ai/randomDialogue.js';
+import { ACTIONS } from '../data/actions.js';
 
 
 const Game = ({state, dispatch, setChatLog}) => {
@@ -71,6 +72,10 @@ const Game = ({state, dispatch, setChatLog}) => {
         } else {
           this.randomDialogueTimer += deltaTime
         }
+
+        let distance = deltaTime*this.velocityX/4000;
+        console.log("distacne: " + distance);
+        dispatch({type: ACTIONS.DECREASE_DISTANCE, payload: distance});
 
       }
 

@@ -1,21 +1,15 @@
-import React, {useState} from 'react'
+import React from 'react'
 import ship from '../assets/corn.png'
 
 const MaxShipProgress = 1000
 
-const ProgressBar = () => {
-    const [shipProgress, setShipProgress] = useState(1000)
+const ProgressBar = (distance) => {
     
-    function getShipProgress() {
-        return (
-            (shipProgress / MaxShipProgress) * 97
-        ) 
-    }
-
+    console.log(distance.distance)
     return (
         <div className="progBarContainer">
             <hr />
-            <img src={ship} style={{left: `${getShipProgress()}%`}} />
+            <img src={ship} style={{right: `${distance.distance/MaxShipProgress*97}%`}} />
         </div>
     )
 }
