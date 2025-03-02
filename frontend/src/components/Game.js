@@ -7,7 +7,7 @@ import '../css/game.css';
 import randomDialogue from '../ai/randomDialogue.js';
 
 
-const Game = ({state, dispatch}) => {
+const Game = ({state, dispatch, setChatLog}) => {
   useEffect(() => {
     const canvas = document.getElementById('canvas1');
     const ctx = canvas.getContext('2d');
@@ -39,7 +39,7 @@ const Game = ({state, dispatch}) => {
         this.asteroidLimit = 5;
 
         this.randomDialogueTimer = 0;
-        this.randomDialogueInterval = Math.floor(Math.random() * (70000 - 50000) + 50000);
+        this.randomDialogueInterval = Math.floor(Math.random() * (70000 - 50000) + 10000);
       }
 
 
@@ -63,7 +63,10 @@ const Game = ({state, dispatch}) => {
         })
 
         if (this.randomDialogueTimer > this.randomDialogueInterval) {
-          randomDialogue(state, dispatch);
+          randomDialogue(state, dispatch).then((output) => {
+            console.log(output);
+            setChatLog((log) => [...log, {name: output.role, text: output.speech}])
+          })
           this.randomDialogueTimer = 0;
         } else {
           this.randomDialogueTimer += deltaTime

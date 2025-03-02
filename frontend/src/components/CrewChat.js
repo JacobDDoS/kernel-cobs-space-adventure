@@ -9,10 +9,6 @@ const CrewChat = ({chatLog, setChatLog}) => {
         chatEndRef.current?.scrollIntoView({ behavior: "smooth" })
     }, [chatLog])
 
-    if (!chatLog) {
-        return;
-    }
-
     const chatData = chatLog.map((message, index) => (
         <div>
             <span style={{"color": "var(--celeste-cyan)"}} key={index}>{message.name}: </span>
