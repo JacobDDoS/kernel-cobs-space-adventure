@@ -16,6 +16,7 @@ async function Chef(state, random, notice=null, warning=null, planet_scenario=nu
 
     if(!random) {
     const chef_dialogue = await state.openai.beta.chat.completions.parse({
+
         model: state.model,
         messages: [
             { role: "system", content: `You are a chef character on a futuristic corn spaceship. 
@@ -32,7 +33,7 @@ async function Chef(state, random, notice=null, warning=null, planet_scenario=nu
         return chef;
     } else {
         const chef_dialogue = await OpenAI.beta.chat.completions.parse({
-            model: api_model,
+            model: state.model,
             messages: [
                 { role: "system", content: `You are a chef character on a futuristic corn spaceship. 
                 Your job is to collect food and water from the game planet environment. Right now you are in your duty but you do not have anything important to talk about. Instead, you should talk about something personal or random.

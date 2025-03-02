@@ -31,8 +31,8 @@ async function Radio_Tech(state, random, notice=null, warning=null, planet_scena
         console.log(radio_tech)
         return radio_tech;
     } else {
-        const radio_tech_dialogue = await openai.beta.chat.completions.parse({
-            model: api_model,
+        const radio_tech_dialogue = await state.openai.beta.chat.completions.parse({
+            model: state.model,
             messages: [
                 { role: "system", content: `You are a radio tech character on a futuristic corn spaceship. 
                     Your job is to report when you are approaching, docking, and leaving a planet environment in the game. Right now you are in your duty but you do not have anything important to talk about. Instead, you should talk about something personal or random.
