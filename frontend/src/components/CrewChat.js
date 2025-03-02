@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useRef } from "react"
+import React, { useEffect, useRef } from "react"
 import ARROW from '../assets/ARROW.png'
 
-const CrewChat = () => {
-    const [chatLog, setChatLog] = useState([])
+const CrewChat = ({chatLog, setChatLog}) => {
     const chatEndRef = useRef(null)
 
     useEffect(() => {
