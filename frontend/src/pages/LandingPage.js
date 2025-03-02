@@ -40,9 +40,13 @@ const LandingPage = ({dispatch}) => {
                     if (isValid) {
                       const openai = new OpenAI({
                         apiKey: key, // API Key Initialization
+                        dangerouslyAllowBrowser: true
                       }); 
-                        dispatch({type: ACTIONS.SET_API_KEY, payload: openai});
+                        dispatch({type: ACTIONS.SET_OPENAI, payload: openai});
+                        dispatch({type: ACTIONS.SET_API_KEY, payload: key});
                         setIsValid(true);
+                        console.log(openai);
+
                     } else {
                         setIsValid(false);
                     }

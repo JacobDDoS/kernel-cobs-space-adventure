@@ -88,6 +88,7 @@ const reducer = (state, action) => {
                 model: action.payload
             }
         case ACTIONS.SET_OPENAI:
+            console.log(action.payload);
             return {
                 ...state,
                 openai: action.payload

@@ -14,7 +14,8 @@ const navigator_dialouge_format = z.object({
     distance_adjusted: z.number(),
 });
 
-async function Navigator(state, notice=null, warning=null, planet_scenario=null) {
+async function Navigator(state, random, notice=null, warning=null, planet_scenario=null) {
+    if (!random) {
     const navigator_dialogue = await state.openai.beta.chat.completions.parse({
         model: state.model,
         messages: [
@@ -28,5 +29,22 @@ async function Navigator(state, notice=null, warning=null, planet_scenario=null)
         
         const navigator = navigator_dialogue.choices[0].message.parsed;
         console.log(navigator)
+        return navigator;
+    } else {
+        const navigator_dialogue = await state.openai.beta.chat.completions.parse({
+            model: state.model,
+            messages: [
+                { role: "system", content: `You are a navigator character on a futuristic corn spaceship. Your job is to report or talk about any general problems or events that happen on the corn spaceship. Right now there is nothing for you to do about your job. Instead, you should talk about something personal or random. 
+                Guidelines: Structure all speech outputs to be a concise 2 sentences or so.` },
+                { role: "user", content: "Based on game events, contribute to the plotline. "},
+            ],
+        response_format: zodResponseFormat(navigator_dialouge_format, "Navigator"),
+        });
+        
+        const navigator = navigator_dialogue.choices[0].message.parsed;
+        console.log(navigator)
+        return navigator
+    }
 }
 
+export default Navigator;
