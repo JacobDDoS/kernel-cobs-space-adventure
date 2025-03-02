@@ -9,23 +9,19 @@ function randomDialogue(state) {
 
     switch(selectedCrew) {
         case 1:
-            Chef(state, true);
-            break;
+            return Chef(state, true);
         case 2:
-            Electrician(state, true);
-            break;
+            return Electrician(state, true);
         case 3:
-            Mechanic(state, true);
-            break;
+            return Mechanic(state, true);
         case 4:
-            Navigator(state, true);
-            break;
+            return Navigator(state, true);
         case 0:
-            Radio_Tech(state, true);
-            break;
+            return Radio_Tech(state, true);
         default:
-            break;
+            return;
     }
+
 }
 
 export default randomDialogue;

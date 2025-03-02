@@ -15,7 +15,8 @@ const chef_dialouge_format = z.object({
 async function Chef(state, random, notice=null, warning=null, planet_scenario=null) {
 
     if(!random) {
-    const chef_dialogue = await OpenAI.beta.chat.completions.parse({
+    const chef_dialogue = await state.openai.beta.chat.completions.parse({
+
         model: state.model,
         messages: [
             { role: "system", content: `You are a chef character on a futuristic corn spaceship. 
