@@ -25,4 +25,7 @@ export const ACTIONS = {
 
     SET_ITEMS_FOR_SALE: "set_items_for_sale",
     SET_USER_INPUT_OPTIONS: "set_user_input_options", 
+
+    SET_API_KEY: "set_api_key",
+    SET_MODEL: "set_model",
 }

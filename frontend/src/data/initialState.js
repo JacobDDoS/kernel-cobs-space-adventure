@@ -10,6 +10,8 @@ const initialState = {
     eventChoices: ["Jetison them", "Try to scare them away", "Do Nothing"],
     eventImage: null,
     eventIsBad: true,
+    APIKey: "",
+    model: "gpt-4o",
 }
 
 export default initialState;

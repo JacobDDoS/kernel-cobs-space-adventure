@@ -256,6 +256,10 @@ async function Navigator(notice=null, warning=null, planet_scenario=null) {
         console.log(navigator)
 }
 
+async function randomPersonTalks() {
+    
+}
+
 // Game Events
 // Event/Popup Generator w/ Respective Image Generators
 // Generate a notice message - Done
