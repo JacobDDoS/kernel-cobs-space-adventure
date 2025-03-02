@@ -12,9 +12,10 @@ const mechanic_dialouge_format = z.object({
   });
 
 // Mechanic - Done
-async function Mechanic(state, notice=null, warning=null, planet_scenario=null) {
-    const mechanic_dialogue = await openai.beta.chat.completions.parse({
-        model: api_model,
+async function Mechanic(state, random=false, notice=null, warning=null, planet_scenario=null) {
+    if (!random) {
+    const mechanic_dialogue = await state.openai.beta.chat.completions.parse({
+        model: state.api_model,
         messages: [
             { role: "system", content: `You are a mechanic character on a futuristic corn spaceship. 
             Your job is to report, repair, or talk about any mechanical and structural problems only that happen on the corn spaceship. Based on ${notice}, ${warning}, and ${planet_scenario}, generate dialouge to further the story. 
@@ -27,6 +28,24 @@ async function Mechanic(state, notice=null, warning=null, planet_scenario=null) 
         
         const mechanic = mechanic_dialogue.choices[0].message.parsed;
         console.log(mechanic)
+        return mechanic
+
+    } else {
+        const mechanic_dialogue = await state.openai.beta.chat.completions.parse({
+            model: state.model,
+            messages: [
+                { role: "system", content: `You are a mechanic character on a futuristic corn spaceship. 
+                Your job is to report, repair, or talk about any mechanical and structural problems only that happen on the corn spaceship. Right now there is nothing for you to do about your job. Instead, you should talk about something personal or random. 
+                Guidelines: Structure all speech outputs to be a concise 2 sentences or so.`},
+                { role: "user", content: "Based on game events, contribute to the plotline. "},
+            ],
+            response_format: zodResponseFormat(mechanic_dialouge_format, "Mechanic"),
+            });
+            
+            const mechanic = mechanic_dialogue.choices[0].message.parsed;
+            console.log(mechanic)
+            return mechanic
+    }
 }
 
-
+export default Mechanic;

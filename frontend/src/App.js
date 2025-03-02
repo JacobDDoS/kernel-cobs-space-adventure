@@ -6,6 +6,9 @@ import initialState from './data/initialState';
 import StartPopup from './components/StartPopup';
 import EventPopup from './components/EventPopup';
 import LandingPage from './pages/LandingPage';
+import Electrician from './ai/Crew/Electrician';
+import Mechanic from './ai/Crew/Mechanic';
+import Navigator from './ai/Crew/Navigator';
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -13,6 +16,8 @@ function App() {
   const [hasPopup, setHasPopup] = useState(true);
 
   if (state.APIKey !== "") {
+    console.log(state);
+    console.log(Navigator(state, true));
     return (
       <>
         {isStarting ? <StartPopup setIsStarting={setIsStarting}/> : null}
