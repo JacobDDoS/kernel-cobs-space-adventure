@@ -55,26 +55,30 @@ export class Player {
 
         this.x += this.game.velocityX;
         this.y += this.game.velocityY;
-        
+
+
+        //bottom bound
         if (this.y < 0) {
             this.game.velocityY = 0;
             this.y = 0;}
 
+
+        //top bound
         if (this.y > this.game.height - this.height){
             this.game.velocityY = 0;
             this.y = this.game.height - this.height;
         }
 
+        //left bound
         if (this.x < 0) {
             this.game.velocityX = 0;
             this.x = 0;
         } 
+
+        //right bound
         if (this.x > (this.game.width / 1.9)- this.width) this.x = (this.game.width/1.9) - this.width;
 
-        //this.x += this.speedX;
-
-
-    }
+        }
     draw(context) {
         //context.fillStyle = 'red';
         //context.fillRect(this.x, this.y, this.width, this.height);
