@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import OpenAI from 'openai'
 import { ACTIONS } from '../data/actions';
 
 const LandingPage = ({dispatch}) => {
@@ -37,7 +38,10 @@ const LandingPage = ({dispatch}) => {
                 checkApiKey(key)
                     .then(isValid => {
                     if (isValid) {
-                        dispatch({type: ACTIONS.SET_API_KEY, payload: key});
+                      const openai = new OpenAI({
+                        apiKey: key, // API Key Initialization
+                      }); 
+                        dispatch({type: ACTIONS.SET_API_KEY, payload: openai});
                     } else {
                         setIsValid(false);
                     }

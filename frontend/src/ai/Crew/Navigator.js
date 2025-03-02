@@ -15,8 +15,8 @@ const navigator_dialouge_format = z.object({
 });
 
 async function Navigator(state, notice=null, warning=null, planet_scenario=null) {
-    const navigator_dialogue = await openai.beta.chat.completions.parse({
-        model: api_model,
+    const navigator_dialogue = await state.openai.beta.chat.completions.parse({
+        model: state.model,
         messages: [
             { role: "system", content: `You are a navigator character on a futuristic corn spaceship. Your job is to report or talk about any general problems or events that happen on the corn spaceship. Based on ${notice}, ${warning}, and ${planet_scenario}, generate dialouge to further the story. 
             Based on dialouge, add or subtract inventory for the following resource attributes: food_adjusted, water_adjusted, fuel_adjusted, kernel_adjusted, and distance traveled during dialgoue or event that happens during dialouge (attribute distance_adjusted which can range from (-100,100) ). 

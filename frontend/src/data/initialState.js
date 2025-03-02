@@ -12,6 +12,7 @@ const initialState = {
     eventIsBad: true,
     APIKey: "",
     model: "gpt-4o",
+    openai: null,
 }
 
 export default initialState;

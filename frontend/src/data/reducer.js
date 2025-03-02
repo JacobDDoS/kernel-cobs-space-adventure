@@ -87,6 +87,11 @@ const reducer = (state, action) => {
                 ...state,
                 model: action.payload
             }
+        case ACTIONS.SET_OPENAI:
+            return {
+                ...state,
+                openai: action.payload
+            }
         default: 
             return state;
     }

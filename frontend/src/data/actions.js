@@ -28,4 +28,5 @@ export const ACTIONS = {
 
     SET_API_KEY: "set_api_key",
     SET_MODEL: "set_model",
+    SET_OPENAI: "set_openai",
 }
