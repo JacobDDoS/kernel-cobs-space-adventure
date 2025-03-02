@@ -2,11 +2,16 @@ import React, { useEffect, useRef } from "react"
 import ARROW from '../assets/ARROW.png'
 
 const CrewChat = ({chatLog, setChatLog}) => {
+    
     const chatEndRef = useRef(null)
 
     useEffect(() => {
         chatEndRef.current?.scrollIntoView({ behavior: "smooth" })
     }, [chatLog])
+
+    if (!chatLog) {
+        return;
+    }
 
     const chatData = chatLog.map((message, index) => (
         <div>
